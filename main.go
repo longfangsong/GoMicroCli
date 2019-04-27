@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"github.com/iancoleman/strcase"
 	"io/ioutil"
 	"net/http"
@@ -41,15 +40,13 @@ func downloadAndRender(filePath string) {
 		body, _ := ioutil.ReadAll(response.Body)
 		file, _ := os.Create(fileName)
 		tmpl, _ := template.New("template").Parse(string(body))
-		fmt.Println(getProjectName())
-		err := tmpl.Execute(file, struct {
+		_ = tmpl.Execute(file, struct {
 			PROJECT_NAME            string
 			PROJECT_NAME_LOWER_CASE string
 		}{
 			getProjectName(),
 			strcase.ToKebab(getProjectName()),
 		})
-		fmt.Println(err)
 	}
 }
 
