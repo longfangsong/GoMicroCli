@@ -1,14 +1,14 @@
 FROM golang:1.12-alpine as builder
 RUN apk add git
-COPY . /go/src/${PROJECT_NAME}
+COPY . /go/src/{{.PROJECT_NAME}}
 ENV GO111MODULE on
-WORKDIR /go/src/${PROJECT_NAME}
+WORKDIR /go/src/{{.PROJECT_NAME}}
 RUN go get && go build
 
 FROM alpine
 MAINTAINER longfangsong@icloud.com
-COPY --from=builder /go/src/${PROJECT_NAME}/${PROJECT_NAME} /
+COPY --from=builder /go/src/{{.PROJECT_NAME}}/{{.PROJECT_NAME}} /
 WORKDIR /
-CMD ./${PROJECT_NAME}
+CMD ./{{.PROJECT_NAME}}
 ENV PORT 8000
 EXPOSE 8000
