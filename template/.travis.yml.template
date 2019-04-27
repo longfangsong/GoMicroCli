@@ -1,0 +1,12 @@
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build
+      language: minimal
+      script:
+        - docker build . -t ${PROJECT_NAME_LOWER_CASE}
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker tag ${PROJECT_NAME_LOWER_CASE} $DOCKER_USERNAME/${PROJECT_NAME_LOWER_CASE}:$TRAVIS_BUILD_ID
+        - docker push $DOCKER_USERNAME/${PROJECT_NAME_LOWER_CASE}

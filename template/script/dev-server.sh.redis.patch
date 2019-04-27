@@ -1,0 +1,2 @@
+export REDIS_ADDRESS="localhost:6379"
+export REDIS_PASSWORD=""

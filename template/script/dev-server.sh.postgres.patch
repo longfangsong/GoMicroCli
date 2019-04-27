@@ -1,0 +1,1 @@
+export DB_ADDRESS="postgres://postgres@localhost:5432/postgres?sslmode=disable"
