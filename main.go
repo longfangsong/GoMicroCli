@@ -39,6 +39,7 @@ func downloadAndRender(filePath string) {
 		response, _ := http.Get(url)
 		body, _ := ioutil.ReadAll(response.Body)
 		file, _ := os.Create(fileName)
+		println(string(body))
 		tmpl, _ := template.New("template").Parse(string(body))
 		_ = tmpl.Execute(file, struct {
 			PROJECT_NAME            string
