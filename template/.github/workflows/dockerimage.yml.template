@@ -10,3 +10,5 @@ jobs:
         run: |
           docker build . -t {{.PROJECT_NAME_LOWER_CASE}}
           docker tag {{.PROJECT_NAME_LOWER_CASE}} {{"${{"}} secrets.DOCKER_USERNAME {{"}}"}}/{{.PROJECT_NAME_LOWER_CASE}}:${GITHUB_SHA}
+          echo "{{"${{"}} secrets.DOCKER_PASSWORD {{"}}"}}" | docker login --username "{{"${{"}} secrets.DOCKER_USERNAME {{"}}"}}" --password-stdin
+          docker push {{"${{"}} secrets.DOCKER_USERNAME {{"}}"}}/{{.PROJECT_NAME_LOWER_CASE}}
