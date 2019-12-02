@@ -1,0 +1,29 @@
+package model
+
+type {{.MODEL_MAME}} struct {
+	Id int64 `json:"id"`
+	/*Fields*/
+}
+
+func Get{{.MODEL_MAME}}(id int64) ({{.MODEL_MAME}}, error) {
+	row := infrastructure.DB.QueryRow(`
+	SELECT /*fields*/
+	FROM {{.MODEL_MAME}}
+	WHERE id=$1;
+	`, id)
+	object := {{.MODEL_MAME}} {
+		Id: id,
+		/* other fields */
+	}
+	err := row.Scan(/*fields*/)
+	return object, err
+}
+
+func Save{{.MODEL_MAME}}(object {{.MODEL_MAME}}) error {
+	return infrastructure.DB.Exec(`
+	INSERT INTO {{.MODEL_MAME}}(id, /*Fields*/)
+	VALUES ($1, /*Values*/);
+	`, object.Id, /*Values*/)
+}
+
+

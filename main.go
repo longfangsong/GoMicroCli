@@ -50,6 +50,28 @@ func downloadAndRender(filePath string) {
 	}
 }
 
+func downloadAndRenderModel(filePath string, modelName string) {
+	pwd, _ := os.Getwd()
+	fileName := pwd + "/" + filePath
+	_, err := os.Stat(fileName)
+	if err != nil {
+		url := "https://raw.githubusercontent.com/longfangsong/GoMicroCli/master/template/model/model.template"
+		response, _ := http.Get(url)
+		body, _ := ioutil.ReadAll(response.Body)
+		file, _ := os.Create(fileName)
+		tmpl, _ := template.New("template").Parse(string(body))
+		_ = tmpl.Execute(file, struct {
+			PROJECT_NAME            string
+			PROJECT_NAME_LOWER_CASE string
+			MODEL_MAME              string
+		}{
+			getProjectName(),
+			strcase.ToKebab(getProjectName()),
+			modelName,
+		})
+	}
+}
+
 func main() {
 	createWhat := flag.String("create", "", "Creat what?")
 	flag.Parse()
@@ -83,6 +105,11 @@ func main() {
 		} else if detail[0] == "redis" {
 			downloadPrepared("infrastructure/redis.go")
 		}
+	case "model":
+		pwd, _ := os.Getwd()
+		_ = os.MkdirAll(pwd+"/model", 0777)
+		modelName := detail[0]
+		downloadAndRenderModel("model/"+strings.ToLower(modelName)+".go", modelName)
 	case "tools":
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/tools", 0777)
