@@ -9,4 +9,4 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build . -t {{.PROJECT_NAME_LOWER_CASE}}
-          docker tag {{.PROJECT_NAME_LOWER_CASE}} ${{ secrets.DOCKER_USERNAME }}/{{.PROJECT_NAME_LOWER_CASE}}:${GITHUB_SHA}
+          docker tag {{.PROJECT_NAME_LOWER_CASE}} {{"${{"}} secrets.DOCKER_USERNAME {{"}}"}}/{{.PROJECT_NAME_LOWER_CASE}}:${GITHUB_SHA}
