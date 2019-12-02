@@ -55,7 +55,7 @@ func downloadAndRenderModel(filePath string, modelName string) {
 	fileName := pwd + "/" + filePath
 	_, err := os.Stat(fileName)
 	if err != nil {
-		url := "https://raw.githubusercontent.com/longfangsong/GoMicroCli/master/template/model/model.template"
+		url := "https://raw.githubusercontent.com/longfangsong/GoMicroCli/master/template/model/model.go.template"
 		response, _ := http.Get(url)
 		body, _ := ioutil.ReadAll(response.Body)
 		file, _ := os.Create(fileName)
@@ -63,7 +63,7 @@ func downloadAndRenderModel(filePath string, modelName string) {
 		_ = tmpl.Execute(file, struct {
 			PROJECT_NAME            string
 			PROJECT_NAME_LOWER_CASE string
-			MODEL_MAME              string
+			MODEL_NAME              string
 		}{
 			getProjectName(),
 			strcase.ToKebab(getProjectName()),
