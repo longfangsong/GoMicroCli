@@ -11,5 +11,13 @@ GoMicroCli --create infr postgres
 
 GoMicroCli --create infr redis
 
-GoMicroCli --create service jwt
+GoMicroCli --create service token
+
+GoMicroCli --create handler
+
+GoMicroCli --create handler
+
+GoMicroCli --create tools checkErr
+
+GoMicroCli --create tools optionalString
 ```

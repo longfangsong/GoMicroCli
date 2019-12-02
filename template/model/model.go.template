@@ -20,10 +20,11 @@ func Get{{.MODEL_NAME}}(id int64) ({{.MODEL_NAME}}, error) {
 }
 
 func Save{{.MODEL_NAME}}(object {{.MODEL_NAME}}) error {
-	return infrastructure.DB.Exec(`
+	_, err := infrastructure.DB.Exec(`
 	INSERT INTO {{.MODEL_NAME}}(id, /*Fields*/)
 	VALUES ($1, /*Values*/);
 	`, object.Id, /*Values*/)
+	return err
 }
 
 
