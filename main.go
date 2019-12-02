@@ -59,13 +59,17 @@ func main() {
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/script", 0777)
 		downloadPrepared("script/dev-server.sh")
-		downloadAndRender(".travis.yml")
+		downloadAndRender(".github/workflows/dockerimage.yml")
 		downloadAndRender("Dockerfile")
+	case "handler":
+		pwd, _ := os.Getwd()
+		_ = os.MkdirAll(pwd+"/handler", 0777)
+		downloadPrepared("handler/ping.go")
 	case "service":
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/service", 0777)
 		switch detail[0] {
-		case "jwt":
+		case "token":
 			_ = os.MkdirAll(pwd+"/service/token", 0777)
 			downloadPrepared("service/token/token.go")
 		}
@@ -76,6 +80,14 @@ func main() {
 			downloadPrepared("infrastructure/db.go")
 		} else if detail[0] == "redis" {
 			downloadPrepared("infrastructure/redis.go")
+		}
+	case "tools":
+		pwd, _ := os.Getwd()
+		_ = os.MkdirAll(pwd+"/tools", 0777)
+		if detail[0] == "checkErr" {
+			downloadPrepared("tools/checkErr.go")
+		} else if detail[0] == "optionalString" {
+			downloadPrepared("tools/optionalString.go")
 		}
 	}
 }
