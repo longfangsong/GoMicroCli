@@ -58,6 +58,8 @@ func main() {
 	case "basic":
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/script", 0777)
+		_ = os.MkdirAll(pwd+"/.github", 0777)
+		_ = os.MkdirAll(pwd+"/.github/workflows", 0777)
 		downloadPrepared("script/dev-server.sh")
 		downloadAndRender(".github/workflows/dockerimage.yml")
 		downloadAndRender("Dockerfile")
