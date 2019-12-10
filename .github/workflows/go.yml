@@ -26,3 +26,7 @@ jobs:
 
     - name: Build
       run: go build -v .
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifact: GoMicroCli
