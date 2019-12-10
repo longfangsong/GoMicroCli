@@ -16,9 +16,10 @@ jobs:
     - name: Build
       run: |
         ls
-        go build -o GoMicroCli-${{ matrix.platform }}
+        go build .
+        mv ./GoMicroCli ./GoMicroCli-${{ matrix.platform }}
   
     - name: GH Release
       uses: yakuhzi/action-release@v1.2.0
       with:
-        files: GoMicroCli-${{ matrix.platform }}
+        files: ./GoMicroCli-${{ matrix.platform }}
