@@ -31,5 +31,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifact: GoMicroCli
-        tag: ${{ env.GITHUB_ACTION }}-${{ matrix.platform }}
+        tag: ${GITHUB_SHA}-${{ matrix.platform }}
         token: ${{ secrets.GITHUB_TOKEN }}
