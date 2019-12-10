@@ -1,5 +1,5 @@
 name: Go
-on: [create]
+on: [push]
 jobs:
   build:
     strategy:
@@ -27,9 +27,9 @@ jobs:
 
     - name: Build
       run: go build -v .
-    - name: Upload release
-      uses: yakuhzi/action-release@v1
+    - name: Create Release
+      uses: ncipollo/release-action@v1
       with:
-        file: GoMicroCli
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        artifact: GoMicroCli
+        tag: ${{ github.sha }}-${{ matrix.platform }}
+        token: ${{ secrets.GITHUB_TOKEN }}
