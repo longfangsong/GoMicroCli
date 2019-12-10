@@ -12,10 +12,9 @@ jobs:
         uses: actions/setup-go@v1.0.0
         with:
           go-version: 1.13
-
       - name: Build
-        run: |
-          ls
+      - uses: actions/checkout@v1
+        run:
           go build .
           mv ./GoMicroCli ./GoMicroCli-${{ matrix.platform }}
 
