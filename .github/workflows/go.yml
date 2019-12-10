@@ -15,8 +15,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build
         run:
-          go build .
-          mv ./GoMicroCli ./GoMicroCli-${{ matrix.platform }}
+          go build -o GoMicroCli-${{ matrix.platform }}
       - name: GH Release
         uses: yakuhzi/action-release@v1.2.0
         with:
