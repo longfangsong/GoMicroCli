@@ -31,3 +31,4 @@ jobs:
       with:
         artifact: GoMicroCli
         tag: ${GITHUB_SHA}
+        token: ${{ secrets.GITHUB_TOKEN }}
