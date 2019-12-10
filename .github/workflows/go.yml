@@ -8,16 +8,5 @@ jobs:
         platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Set up Go 1.13
-        uses: actions/setup-go@v1.0.0
-        with:
-          go-version: 1.13
-      - uses: actions/checkout@v1
-      - name: Build
-        run: |
-          go get
-          go build -o GoMicroCli-${{ matrix.platform }}
-      - name: GH Release
-        uses: yakuhzi/action-release@v1.2.0
-        with:
-          files: ./GoMicroCli-${{ matrix.platform }}
+      - name: Go Release Binary
+        uses: ngs/go-release.action@v1.0.2
