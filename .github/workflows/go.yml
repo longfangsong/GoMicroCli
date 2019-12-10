@@ -1,12 +1,13 @@
 name: Go
 on: [push]
 jobs:
-
   build:
+    strategy:
+      matrix:
+        platform: [ubuntu, macos, windows]
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.platform }}
     steps:
-
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
@@ -30,5 +31,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifact: GoMicroCli
-        tag: ${GITHUB_SHA}
+        tag: $GITHUB_ACTION-${{ matrix.platform }}
         token: ${{ secrets.GITHUB_TOKEN }}
