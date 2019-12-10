@@ -15,8 +15,8 @@ jobs:
 
     - name: Build
       run: go build . -o GoMicroCli-${{ matrix.platform }}
-    
+  
     - name: GH Release
-      uses: softprops/action-gh-release@v0.1.0
+      uses: yakuhzi/action-release@v1.2.0
       with:
         files: GoMicroCli-${{ matrix.platform }}
