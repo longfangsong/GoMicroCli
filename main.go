@@ -85,10 +85,12 @@ func main() {
 		downloadPrepared("script/dev-server.sh")
 		downloadAndRender(".github/workflows/dockerimage.yml")
 		downloadAndRender("Dockerfile")
+		downloadAndRender("main.go")
 	case "handler":
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/handler", 0777)
 		downloadPrepared("handler/ping.go")
+		downloadPrepared("handler/handler_test.go")
 	case "service":
 		pwd, _ := os.Getwd()
 		_ = os.MkdirAll(pwd+"/service", 0777)

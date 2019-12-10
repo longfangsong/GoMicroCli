@@ -1,0 +1,15 @@
+package main
+
+import (
+	"log"
+	"net/http"
+	"os"
+)
+
+func main() {
+	//http.HandleFunc goes here
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
