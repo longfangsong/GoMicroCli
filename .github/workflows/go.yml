@@ -14,7 +14,7 @@ jobs:
         go-version: 1.13
 
     - name: Build
-      run: go build . -o GoMicroCli-${{ matrix.platform }}
+      run: go build -o GoMicroCli-${{ matrix.platform }}
   
     - name: GH Release
       uses: yakuhzi/action-release@v1.2.0
